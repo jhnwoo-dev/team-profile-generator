@@ -156,8 +156,7 @@ const addIntern = () => {
 };
 
 const finishTeam = () => {
-    const htmlContent = generateHtml(team);
-    fs.writeFile("../dist/index.html", htmlContent, (err) =>
+    fs.writeFile("../dist/index.html", generateHtml(team), (err) =>
         err
             ? console.error(err)
             : console.log("Your team page has been generated!")
