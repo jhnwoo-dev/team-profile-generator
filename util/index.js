@@ -1,6 +1,6 @@
-const Engineer = require("../lib/Engineer");
-const Manager = require("../lib/Manager");
-const Intern = require("../lib/Intern");
+const engineer = require("../lib/Engineer");
+const manager = require("../lib/Manager");
+const intern = require("../lib/Intern");
 const generateHtml = require("./generateHtml");
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -32,7 +32,7 @@ const start = () => {
             },
         ])
         .then((ans) => {
-            const frontMan = new Manager(
+            const frontMan = new manager(
                 ans.frontMan,
                 ans.frontID,
                 ans.frontEmail,
@@ -70,8 +70,9 @@ const addTeam = () => {
                     addIntern();
                     break;
 
-                case "Finish building team":
+                case "Finish building your team":
                     console.log("Finishing up!");
+                    console.log(team);
                     finishTeam();
                     break;
             }
@@ -103,7 +104,7 @@ const addEngineer = () => {
             },
         ])
         .then((response) => {
-            const newEngineer = new Engineer(
+            const newEngineer = new engineer(
                 response.engineerName,
                 response.engineerID,
                 response.engineerEmail,
@@ -141,7 +142,7 @@ const addIntern = () => {
             },
         ])
         .then((response2) => {
-            const newIntern = new Intern(
+            const newIntern = new intern(
                 response2.internName,
                 response2.internID,
                 response2.internEmail,
@@ -155,7 +156,8 @@ const addIntern = () => {
 };
 
 const finishTeam = () => {
-    fs.writeFile("../dist/index.html", generateHtml(team), (err) =>
+    const htmlContent = generateHtml(team);
+    fs.writeFile("../dist/index.html", htmlContent, (err) =>
         err
             ? console.error(err)
             : console.log("Your team page has been generated!")
