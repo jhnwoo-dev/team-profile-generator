@@ -52,25 +52,25 @@ const addTeam = () => {
                 name: "question",
                 type: "list",
                 choices: [
-                    "Add an engineer",
-                    "Add an intern",
-                    "Finish building your team",
+                    { name: "Add an engineer", value: 1 },
+                    { name: "Add an intern", value: 2 },
+                    { name: "Finish building your team", value: 3 },
                 ],
             },
         ])
         .then((answer) => {
             switch (answer.question) {
-                case "Add an engineer":
+                case 1:
                     console.log("Add your engineer!");
                     addEngineer();
                     break;
 
-                case "Add an intern":
+                case 2:
                     console.log("Add your intern!");
                     addIntern();
                     break;
 
-                case "Finish building your team":
+                case 3:
                     console.log("Finishing up!");
                     console.log(team);
                     finishTeam();
